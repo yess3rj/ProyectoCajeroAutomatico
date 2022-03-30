@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Principal</title>
+</head>
+<body>
+    <h1>Bienvenido</h1>
+    <form action="">
+        <p>Saldo actual</p>
+        <p id="saldo"> </p>
+        <input type="text" name="verificacion" id="ver">
+        <input type="button" value="Consultar" onclick="consultar()">
+
+        <input type="text" name="deposito" id="dep" placeholder="Ingresa una cantidad"/>
+        <input type="button" value="Depositar" onclick="depositar()">
+    
+        <input type="text" name="retiro" id="ret" placeholder="Ingresa una cantidad">
+        <input type="button" value="Retirar" onclick="retirar()">
+    </form>
+
+    <script src="app.js"></script>
+</body>
+</html>
