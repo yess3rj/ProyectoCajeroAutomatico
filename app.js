@@ -46,7 +46,8 @@ function iniciar({ user, password }){
 
     
     function depositar() {
-        let { saldo } = currentUser();
+      const payload = currentUser();
+        let { saldo } = payload
 
         const deposito = parseFloat(document.getElementsByName("deposito")[0].value);
         //console.log("🚀 ~ file: app.js ~ line 52 ~ depositar ~ deposito", typeof(deposito))
@@ -62,10 +63,14 @@ function iniciar({ user, password }){
         }
 
   
-        saldo = saldo + deposito;
+        payload.saldo = saldo + deposito;
+        localStorage.setItem('currentUser', JSON.stringify(payload));
+        document.getElementsById('balance').value = payload.saldo
+        
     }
 
     function retirar() {
+      const payload = currentUser();
         let { saldo } = currentUser();
         const retiro = parseFloat(document.getElementsByName("retiro")[0].value);
 
@@ -84,5 +89,7 @@ function iniciar({ user, password }){
             return;
         }
 
-        saldo = saldo - retiro;    
+        payload.saldo = saldo - retiro;
+        localStorage.setItem('currentUser', JSON.stringify(payload));
+        document.getElementsById('balance').value = payload.saldo  
     }
