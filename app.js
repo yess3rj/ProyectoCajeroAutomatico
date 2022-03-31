@@ -60,7 +60,12 @@ function iniciar({ user, password }){
   
         payload.saldo = saldo + deposito;
         localStorage.setItem('currentUser', JSON.stringify(payload));
-        document.getElementById('balance').value = payload.saldo        
+        document.getElementById('balance').value = payload.saldo 
+        resetValue('deposit');      
+    }
+
+    function resetValue(id) {
+      document.getElementById(id).value = ''
     }
 
     function retirar() {
@@ -85,5 +90,6 @@ function iniciar({ user, password }){
 
         payload.saldo = saldo - retiro;
         localStorage.setItem('currentUser', JSON.stringify(payload));
-        document.getElementById('balance').value = payload.saldo  
+        document.getElementById('balance').value = payload.saldo
+        resetValue('withdraw');
     }
