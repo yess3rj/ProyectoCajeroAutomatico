@@ -14,6 +14,7 @@
 <body>
     <header class="header">
         <img class="header__img" src="./img/MiauBank.png" alt="logo banco">
+        <a class="salir" href="index.html">Salir</a>
     </header>
     <div class="container">
         <div class="row justify-content-center pt-1 mt-4 m-1">
@@ -21,7 +22,7 @@
                 <h1>Bienvenido</h1>
                 <form action="">
                     <p class="actual">Saldo actual:</p>
-                    <input type="text" class="form-control" name="verificacion" id="balance" readonly disabled>
+                    <input type="text" class="form-control" name="currentBalance" id="balance" readonly disabled>
                     <input type="button" class="boton" value="Consultar" onclick="consultar()">
 
                     <input type="text" class="form-control" name="deposito" id="deposit" placeholder="Ingresa una cantidad"/>

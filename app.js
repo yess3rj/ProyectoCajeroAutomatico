@@ -1,16 +1,16 @@
 var accounts = [
   {
-    user: "Alfa", 
+    user: 'Alfa', 
     saldo: 200,
     password: 789
   },
   {
-    user: "Yammy",
+    user: 'Yammy',
     saldo: 290,
     password: 456
   },
   {
-    user: "Aly",
+    user: 'Aly',
     saldo: 67,
     password: 123
   }
@@ -22,12 +22,12 @@ function iniciar({ user, password }){
     localStorage.setItem('currentUser', JSON.stringify(resultado));
     if (resultado) {
         if (password.value==resultado.password) {
-          location="principal.html"
+          location='principal.html'
         } else {
-          alert("Contraseña incorrecta")
+          alert('Contraseña incorrecta')
         }
     } else {
-        alert("Usuario incorrecto")
+        alert('Usuario incorrecto')
     }
 }
 
@@ -38,22 +38,22 @@ function iniciar({ user, password }){
     
     function consultar() {
       const { saldo } = currentUser();
-      document.getElementsByName("verificacion")[0].value = saldo;
+      document.getElementsByName('currentBalance')[0].value = saldo;
   }
     
     function depositar() {
       const payload = currentUser();
         let { saldo } = payload
 
-        const deposito = parseFloat(document.getElementsByName("deposito")[0].value);
+        const deposito = parseFloat(document.getElementsByName('deposito')[0].value);
 
         if (isNaN(deposito)) {
-            alert("El valor ingresado no es número válido");
+            alert('El valor ingresado no es número válido');
             return;
         }
 
         if (saldo + deposito > 990) {
-          alert("No puedes depositar esa cantidad, tu saldo total debe de ser igual o menor a $990")
+          alert('No puedes depositar esa cantidad, tu saldo total debe de ser igual o menor a $990')
           return;
         }
 
@@ -61,7 +61,8 @@ function iniciar({ user, password }){
         payload.saldo = saldo + deposito;
         localStorage.setItem('currentUser', JSON.stringify(payload));
         document.getElementById('balance').value = payload.saldo 
-        resetValue('deposit');      
+        resetValue('deposit');
+        alert('Depositaste $' + deposito + ', tu saldo es de $' + payload.saldo) 
     }
 
     function resetValue(id) {
@@ -71,20 +72,20 @@ function iniciar({ user, password }){
     function retirar() {
       const payload = currentUser();
         let { saldo } = currentUser();
-        const retiro = parseFloat(document.getElementsByName("retiro")[0].value);
+        const retiro = parseFloat(document.getElementsByName('retiro')[0].value);
 
         if (isNaN(retiro)) {
-            alert("El valor ingresado no es número válido");
+            alert('El valor ingresado no es número válido');
             return;
         }
 
         if (saldo - retiro < 10) {
-          alert("No puedes retirar esa cantidad, tu saldo total debe de ser igual o mayor a $10")
+          alert('No puedes retirar esa cantidad, tu saldo total debe de ser igual o mayor a $10')
           return;
         }
 
         if (retiro > saldo) {
-            alert("Su fondo disposible no es suficiente");
+            alert('Tu fondo disposible no es suficiente');
             return;
         }
 
@@ -92,4 +93,5 @@ function iniciar({ user, password }){
         localStorage.setItem('currentUser', JSON.stringify(payload));
         document.getElementById('balance').value = payload.saldo
         resetValue('withdraw');
+        alert('Retiraste $' + retiro + ', tu saldo es de $' + payload.saldo)
     }
