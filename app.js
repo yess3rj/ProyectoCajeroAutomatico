@@ -1,4 +1,4 @@
-var cuentas = [
+var accounts = [
   {
     user: "Alfa", 
     saldo: 200,
@@ -18,7 +18,7 @@ var cuentas = [
 
 
 function iniciar({ user, password }){
-    const resultado = cuentas.find(cuentas  => cuentas.user === user.value);
+    const resultado = accounts.find(accounts  => accounts.user === user.value);
     localStorage.setItem('currentUser', JSON.stringify(resultado));
     if (resultado) {
         if (password.value==resultado.password) {
@@ -31,26 +31,21 @@ function iniciar({ user, password }){
     }
 }
 
-
-
 ////
     function currentUser() {
       return JSON.parse(localStorage.getItem('currentUser'));
     }
     
-  
     function consultar() {
       const { saldo } = currentUser();
       document.getElementsByName("verificacion")[0].value = saldo;
   }
-
     
     function depositar() {
       const payload = currentUser();
         let { saldo } = payload
 
         const deposito = parseFloat(document.getElementsByName("deposito")[0].value);
-        //console.log("🚀 ~ file: app.js ~ line 52 ~ depositar ~ deposito", typeof(deposito))
 
         if (isNaN(deposito)) {
             alert("El valor ingresado no es número válido");
@@ -65,8 +60,7 @@ function iniciar({ user, password }){
   
         payload.saldo = saldo + deposito;
         localStorage.setItem('currentUser', JSON.stringify(payload));
-        document.getElementsById('balance').value = payload.saldo
-        
+        document.getElementById('balance').value = payload.saldo        
     }
 
     function retirar() {
@@ -91,5 +85,5 @@ function iniciar({ user, password }){
 
         payload.saldo = saldo - retiro;
         localStorage.setItem('currentUser', JSON.stringify(payload));
-        document.getElementsById('balance').value = payload.saldo  
+        document.getElementById('balance').value = payload.saldo  
     }
